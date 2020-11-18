@@ -1,0 +1,8 @@
+.header__button {
+  display: flex;
+  padding: 12px 19px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  height: max-content;
+  margin: 19px 0 13px;
+}

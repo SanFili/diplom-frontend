@@ -1,0 +1,13 @@
+@import url("../vendor/fonts.css");
+@import url("../vendor/normalize.css");
+@import url("../blocks/header/header.css");
+
+body {
+  max-width: 1440px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}

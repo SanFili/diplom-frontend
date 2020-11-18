@@ -1,0 +1,19 @@
+@import url("../header/__title/header__title.css");
+@import url("../header/__menu/header__menu.css");
+@import url("../header/__links/header__links.css");
+@import url("../header/__link/header__link.css");
+@import url("../header/__link/_active/header__link_active.css");
+@import url("../header/__button/header__button.css");
+@import url("../header/__btn-text/header__btn-text.css");
+@import url("../header/__btn-logout/header__btn-logout.css");
+
+.header {
+  background-color: red;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 104px*2);
+  margin: 0 auto;
+  color: #fff;
+  border-bottom: solid rgba(255, 255, 255, 0.01) 1px;
+}
