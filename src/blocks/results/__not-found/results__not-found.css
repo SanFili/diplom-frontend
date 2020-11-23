@@ -1,0 +1,6 @@
+.results__not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 86px 0 80px;
+}

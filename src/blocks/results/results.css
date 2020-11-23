@@ -9,6 +9,9 @@
 @import url("./__loading/results__loading.css");
 @import url("./__preloader/results__preloader.css");
 @import url("./__preloader-text/results__preloader-text.css");
+@import url("./__not-found/results__not-found.css");
+@import url("./__not-found-title/results__not-found-title.css");
+@import url("./__not-found-text/results__not-found-text.css");
 
 .results {
   width: 100%;
