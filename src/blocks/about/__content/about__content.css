@@ -1,0 +1,6 @@
+.about__content {
+  width: 1120px;
+  padding: 80px 0 80px 104px;
+  display: flex;
+  justify-content: space-between;
+}
