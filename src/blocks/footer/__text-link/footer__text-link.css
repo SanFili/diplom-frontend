@@ -1,9 +1,8 @@
-.header__link {
+.footer__text-link {
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 18px;
   line-height: 24px;
-  color: #B6BCBF;
-  margin: 0 32px 0 0;
+  color: #1A1B22;
 }
