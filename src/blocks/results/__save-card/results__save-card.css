@@ -1,0 +1,8 @@
+.results__save-card {
+  height: 40px;
+  display: flex;
+}
+
+.results__save-card:hover .results__auth-alert {
+  opacity: 1;
+}

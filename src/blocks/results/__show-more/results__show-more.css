@@ -1,0 +1,18 @@
+.results__show-more {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+  background: #FFFFFF;
+  border-radius: 80px;
+  height: 64px;
+  width: 288px;
+  border: none;
+  margin: 64px 0 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

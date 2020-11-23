@@ -1,0 +1,10 @@
+.card__content {
+  position: relative;
+  height: 260px;
+  width: 352px;
+  background: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: 0;
+  padding: 20px 24px 24px 24px;
+}

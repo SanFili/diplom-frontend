@@ -1,0 +1,11 @@
+.card__save-btn {
+  background: #fff;
+  border-radius: 8px;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.card__save-btn:hover .card__save-img {
+  opacity: 1;
+}

@@ -1,0 +1,15 @@
+@import url("./__title/card__title.css");
+@import url("./__save/card__save.css");
+@import url("./__save-btn/card__save-btn.css");
+@import url("./__save-img/card__save-img.css");
+@import url("./__content/card__content.css");
+@import url("./__article/card__article.css");
+@import url("./__data/card__data.css");
+@import url("./__img/card__img.css");
+@import url("./__resource/card__resource.css");
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 576px;
+}
