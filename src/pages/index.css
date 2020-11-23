@@ -6,6 +6,7 @@
 @import url("../blocks/results/results.css");
 @import url("../blocks/about/about.css");
 @import url("../blocks/footer/footer.css");
+@import url("../blocks/cards/cards.css");
 
 body {
   max-width: 1440px;

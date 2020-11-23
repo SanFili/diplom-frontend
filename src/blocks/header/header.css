@@ -1,15 +1,16 @@
-@import url("../header/__content/header__content.css");
-@import url("../header/__title/header__title.css");
-@import url("../header/__menu/header__menu.css");
-@import url("../header/__links/header__links.css");
-@import url("../header/__link/header__link.css");
-@import url("../header/__link/_active/header__link_active.css");
-@import url("../header/__button/header__button.css");
-@import url("../header/__btn-text/header__btn-text.css");
-@import url("../header/__btn-logout/header__btn-logout.css");
+@import url("./_black-border/header_black-border.css");
+@import url("./__content/header__content.css");
+@import url("./__title/header__title.css");
+@import url("./__menu/header__menu.css");
+@import url("./__links/header__links.css");
+@import url("./__link/header__link.css");
+@import url("./__button/header__button.css");
+@import url("./__btn-text/header__btn-text.css");
+@import url("./__btn-logout/header__btn-logout.css");
 
 .header {
   position: absolute;
+  top: 0;
   z-index: 1;
   height: 80px;
   width: 100%;

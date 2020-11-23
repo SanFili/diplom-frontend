@@ -1,3 +1,5 @@
+@import url("./_black/header__button_black.css");
+
 .header__button {
   display: flex;
   padding: 12px 19px;

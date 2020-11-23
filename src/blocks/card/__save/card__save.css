@@ -1,6 +1,12 @@
 .card__save {
+  height: 40px;
+  display: flex;
   position: absolute;
   top: 24px;
   right: 24px;
   z-index: 5;
+}
+
+.card__save:hover .card__alert {
+  opacity: 1;
 }
