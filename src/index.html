@@ -117,6 +117,49 @@
           </div>
         </div>
       </section>
+      <div class="popup"> <!-- для открытия попапа добавить класс popup_is-opened-->
+        <div class="popup__content">
+          <img class="popup__close" src='./images/close.svg' alt="">
+          <h3 class="popup__title">Вход</h3>
+          <form class="popup__form" novalidate name="new">
+            <h4 class="popup__subtitle">Email</h4>
+            <input type="text" name="email" id="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+            <p class="error-msg" id="error-email"></p>
+            <h4 class="popup__subtitle">Пароль</h4>
+            <input type="text" name="password" id="pass" class="popup__input popup__input_type_pass" placeholder="Введите пароль">
+            <p class="error-msg" id="error-pass"></p>
+            <button type class="popup__button">Войти</button>
+          </form>
+          <p class="popup__other">или<button class="popup__other-btn">Зарегистрироваться</button></p>
+        </div>
+      </div>
+      <div class="popup"> <!-- для открытия попапа добавить класс popup_is-opened-->
+        <div class="popup__content">
+          <img class="popup__close" src='./images/close.svg' alt="">
+          <h3 class="popup__title">Регистрация</h3>
+          <form class="popup__form" novalidate name="new">
+            <h4 class="popup__subtitle">Email</h4>
+            <input type="text" name="email" id="email" class="popup__input popup__input_type_email" placeholder="Введите почту">
+            <p class="error-msg" id="error-email"></p>
+            <h4 class="popup__subtitle">Пароль</h4>
+            <input type="text" name="password" id="pass" class="popup__input popup__input_type_pass" placeholder="Введите пароль">
+            <p class="error-msg" id="error-pass"></p>
+            <h4 class="popup__subtitle">Имя</h4>
+            <input type="text" name="name" id="name" class="popup__input popup__input_type_name" placeholder="Введите имя">
+            <p class="error-msg" id="error-name"></p>
+            <p class="error-msg error-msg_server" id="error-server"></p>
+            <button type class="popup__button">Зарегистрироваться</button>
+          </form>
+          <p class="popup__other">или<button class="popup__other-btn">Войти</button></p>
+        </div>
+      </div>
+      <div class="popup popup_is-opened"> <!-- для открытия попапа добавить класс popup_is-opened-->
+        <div class="popup__content">
+          <img class="popup__close" src='./images/close.svg' alt="">
+          <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+          <button class="popup__enter-btn">Войти</button>
+        </div>
+      </div>
     </main>
     <footer class="footer">
       <div class="footer__content">

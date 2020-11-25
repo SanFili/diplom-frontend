@@ -7,6 +7,9 @@
 @import url("../blocks/about/about.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/cards/cards.css");
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/error-msg/error-msg.css");
+@import url("../blocks/error-msg/_server/error-msg_server.css");
 
 body {
   max-width: 1440px;

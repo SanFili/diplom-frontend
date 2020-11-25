@@ -1,0 +1,12 @@
+.popup__enter-btn {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2F71E5;
+  border: none;
+  background: #fff;
+  padding: 0;
+  margin: 14px 0 23px;
+}
