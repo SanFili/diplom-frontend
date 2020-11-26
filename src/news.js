@@ -1,0 +1,1 @@
+import "./pages/news.css";

@@ -5,15 +5,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
+const filename = (ext) =>
+  isDev ? `[name].${ext}` : `[name].[chunkhash].${ext}`;
 
 module.exports = {
     entry: {
-      main: "./src/index.js",
+      index: "./src/index.js",
       news: "./src/news.js"
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
+        filename: filename("js")
     },
     module: {
         rules: [{
@@ -29,26 +31,47 @@ module.exports = {
             },
             {
             test: /\.(png|jpe?g|gif)$/i,
-            use: [{ loader: 'file-loader'}]
+            use: [
+              {
+                loader: "image-webpack-loader",
+                options: {
+                  name: "[path][chunkhash].[ext]",
+                  bypassOnDebug: true,
+                  disable: false,
+                }
+            }
+            ],
             },
             {
-            test: /\.(png|jpg|gif|ico|svg)$/,
-            use: [
-                    'file-loader?name=./images/[name].[ext]',
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {}
-                    },
-                ]
+              test: /\.(svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+              use: [
+                {
+                  loader: "file-loader",
+                  options: {
+                      esModule: false,
+                      outputPath: "./images"
+                  },
+                },
+              ],
             },
             {
             test: /\.(eot|ttf|woff|woff2)$/,
-            loader: 'file-loader?name=./vendor/[name].[ext]'
+            use: [
+              {
+                loader: "file-loader",
+                options: {
+                  outputPath: "./vendor/fonts/",
+                  esModule: false,
+                },
+              },
+            ],
             }
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: 'index.[contenthash].css'}),
+        new MiniCssExtractPlugin({
+          filename: `${filename("css")}`
+        }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
@@ -60,8 +83,15 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            chunks: ["index"]
         }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: './src/news.html',
+            filename: 'news.html',
+            chunks: ["news"]
+      }),
         new WebpackMd5Hash(),
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
