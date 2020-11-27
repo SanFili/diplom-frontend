@@ -17,3 +17,11 @@
   top: 0;
   right: 0;
 }
+
+.search__btn:hover {
+  background: #347EFF;
+}
+
+.search__btn:active {
+  background: #2A65CC;
+}
