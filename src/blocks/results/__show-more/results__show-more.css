@@ -16,3 +16,7 @@
   left: 50%;
   transform: translate(-50%, 0);
 }
+
+.results__show-more:hover {
+  opacity: 0.9;
+}
