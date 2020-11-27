@@ -1,0 +1,14 @@
+@media screen and (max-width: 1100px) {
+  .about__avatar {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__avatar {
+    width: 232px;
+    height: 232px;
+    margin: 21px 0;
+  }
+}

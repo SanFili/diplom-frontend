@@ -10,3 +10,10 @@
 .card__save:hover .card__alert {
   opacity: 1;
 }
+
+@media screen and (max-width: 950px) {
+  .card__save {
+    top: 8px;
+    right: 8px;
+  }
+}

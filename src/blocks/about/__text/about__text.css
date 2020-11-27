@@ -7,3 +7,10 @@
   color: #1A1B22;
   margin: 24px 0 0;
 }
+
+
+@media screen and (max-width: 768px) {
+  .about__text {
+    margin-top: 16px;
+  }
+}

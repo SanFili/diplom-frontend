@@ -5,3 +5,9 @@
   margin: 0 auto;
   padding: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .header__content {
+    width: calc(100% - 80px);
+  }
+}

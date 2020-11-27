@@ -1,4 +1,12 @@
 .search__field {
   position: relative;
   margin: 64px 0 80px;
+  height: 64px
+}
+
+@media screen and (max-width: 768px) {
+  .search__field {
+    margin: 48px 0;
+    height: 56px;
+  }
 }

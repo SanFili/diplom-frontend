@@ -1,10 +1,17 @@
 .card__content {
   position: relative;
   height: 260px;
-  width: 352px;
+  width: calc(100% - 48px);
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   margin: 0;
   padding: 20px 24px 24px 24px;
+}
+
+@media screen and (max-width: 1100px) {
+  .card__content {
+    width: calc(100% - 32px);
+    padding: 16px;
+  }
 }

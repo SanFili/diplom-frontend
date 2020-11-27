@@ -8,3 +8,9 @@
   width: 545px;
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .search__subtitle {
+    width: 100%;
+  }
+}

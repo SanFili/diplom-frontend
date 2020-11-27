@@ -4,3 +4,17 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 1250px) {
+  .about__content {
+    padding-left: 80px;
+    width: calc(100% - 90px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__content {
+    padding: 40px;
+    width: calc(100% - 80px);
+  }
+}

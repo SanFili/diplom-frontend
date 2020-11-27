@@ -3,3 +3,9 @@
   padding: 0 0 26px 0;
   border-bottom: solid #fff 3px;
 }
+
+@media screen and (max-width: 768px) {
+  .header__link_active {
+    padding-bottom: 20px;
+  }
+}

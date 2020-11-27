@@ -8,3 +8,10 @@
   height: max-content;
   margin: 19px 0 13px;
 }
+
+@media screen and (max-width: 768px) {
+  .header__button {
+    padding: 8px 12px;
+    margin: 14px 0 12px;
+  }
+}

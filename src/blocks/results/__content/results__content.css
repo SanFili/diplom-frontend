@@ -1,6 +1,11 @@
 .results__content {
-  height: 894px;
-  width: 1232px;
+  width: calc(100% - 208px);
   margin: 0 auto;
   padding: 0;
+}
+
+@media screen and (max-width: 950px) {
+  .results__content {
+    width: calc(100% - 80px);
+  }
 }
