@@ -7,3 +7,10 @@
   color: rgba(26, 27, 34, 0.5);
   margin: 120px 0 28px;
 }
+
+@media screen and (max-width: 768px) {
+  .saved__title {
+    margin: 90px 0 16px;
+    font-size: 14px;
+  }
+}

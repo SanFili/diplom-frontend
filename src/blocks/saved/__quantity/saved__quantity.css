@@ -8,3 +8,10 @@
   width: 500px;
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .saved__quantity {
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
