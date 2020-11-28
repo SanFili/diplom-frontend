@@ -1,5 +1,6 @@
 {
   "name": "diplom-frontend",
+  "homepage": "https://SanFili.github.io/diplom-frontend/",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/SanFili/diplom-frontend/issues"
   },
-  "homepage": "https://github.com/SanFili/diplom-frontend#readme",
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
