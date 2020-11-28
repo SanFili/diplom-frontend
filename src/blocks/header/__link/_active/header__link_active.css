@@ -9,3 +9,10 @@
     padding-bottom: 20px;
   }
 }
+
+@media screen and (max-width: 580px) {
+  .header__link_active {
+    padding-bottom: 0;
+    border-bottom: 0px;
+  }
+}

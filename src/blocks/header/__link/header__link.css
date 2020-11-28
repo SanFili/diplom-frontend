@@ -14,3 +14,11 @@
     margin-right: 16px;
   }
 }
+
+@media screen and (max-width: 580px) {
+  .header__link {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+}
+

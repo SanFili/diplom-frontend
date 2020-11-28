@@ -15,16 +15,20 @@
     <header class="header">
       <div class="header__content">
         <h2 class="header__title">NewsExplorer</h2>
-        <div class="header__menu">
-          <div class="header__links">
-            <a class="header__link header__link_active" href="./index.html">Главная</a>
-            <a class="header__link" href="./news.html">Сохраненные статьи</a>
-          </div>
-          <div class="header__button">
-            <p class="header__btn-text">Грета</p>
-            <img class="header__btn-logout" src="<%=require('./images/logout.svg')%>" alt="иконка выхода">
+        <div class="header__burger">
+          <div class="header__menu">
+            <div class="header__links">
+              <a class="header__link header__link_active" href="./index.html">Главная</a>
+              <a class="header__link" href="./news.html">Сохраненные статьи</a>
+            </div>
+            <div class="header__button">
+              <p class="header__btn-text">Грета</p>
+              <img class="header__btn-logout" src="<%=require('./images/logout.svg')%>" alt="иконка выхода">
+            </div>
           </div>
         </div>
+        <!-- через js бургер будет меняться на крестик -->
+        <img class="header__burger-btn" src="<%=require('./images/menu.svg')%>" alt="кнопка вызова меню">
       </div>
     </header>
     <main class="content">

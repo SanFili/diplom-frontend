@@ -1,0 +1,10 @@
+.header__burger-btn {
+  display: none;
+}
+
+@media screen and (max-width: 580px) {
+  .header__burger-btn {
+    display: block;
+    z-index: 10;
+  }
+}

@@ -20,3 +20,10 @@
   left: 24px;
   z-index: 5;
 }
+
+@media screen and (max-width: 768px) {
+  .saved__theme {
+    top: 8px;
+    left: 8px;
+  }
+}
