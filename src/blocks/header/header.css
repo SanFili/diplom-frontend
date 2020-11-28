@@ -1,7 +1,7 @@
 @import url("./_black-border/header_black-border.css");
+@import url("./__burger/header__burger.css");
 @import url("./__content/header__content.css");
 @import url("./__title/header__title.css");
-@import url("./__burger/header__burger.css");
 @import url("./__menu/header__menu.css");
 @import url("./__links/header__links.css");
 @import url("./__link/header__link.css");
@@ -34,5 +34,6 @@
 @media screen and (max-width: 580px) {
   .header {
     height: 56px;
+    position: fixed;
   }
 }

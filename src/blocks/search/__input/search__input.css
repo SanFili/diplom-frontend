@@ -4,7 +4,7 @@
   box-sizing: border-box;
   backdrop-filter: blur(8px);
   border-radius: 100px;
-  font-family: Roboto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
