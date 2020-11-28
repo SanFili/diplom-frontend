@@ -18,3 +18,11 @@
     width: calc(100% - 80px);
   }
 }
+
+@media screen and (max-width: 580px) {
+  .about__content {
+    flex-direction: column;
+    width: calc(100% - 32px);
+    padding: 32px 16px 80px;
+  }
+}

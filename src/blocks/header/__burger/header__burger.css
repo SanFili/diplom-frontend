@@ -1,6 +1,6 @@
 @media screen and (max-width: 580px) {
   .header__burger {
-    /**display: none;**/
+    display: none;
     position: fixed;
     background: rgba(0, 0, 0, .5);
     height: 100%;

@@ -27,7 +27,6 @@
             </div>
           </div>
         </div>
-        <!-- через js бургер будет меняться на крестик -->
         <img class="header__burger-btn" src="<%=require('./images/menu.svg')%>" alt="кнопка вызова меню">
       </div>
     </header>
@@ -168,8 +167,10 @@
       <div class="footer__content">
         <p class="footer__copyright">&copy; 2020 Supersite, Powered by News API</p>
         <div class="footer__links">
-          <a class="footer__text-link" href="index.html">Главная</a>
-          <a class="footer__text-link" href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+          <div class="footer__text-links">
+            <a class="footer__text-link" href="index.html">Главная</a>
+            <a class="footer__text-link" href="https://praktikum.yandex.ru" target="_blank">Яндекс.Практикум</a>
+          </div>
           <a class="footer__icon-link" href="https://github.com/SanFili" target="_blank">
             <img src="<%=require('./images/github-icon.svg')%>" alt="GitHub icon">
           </a>

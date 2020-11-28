@@ -16,3 +16,15 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 480px) {
+  .search {
+    height: 480px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .search {
+    height: 536px;
+  }
+}

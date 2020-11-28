@@ -15,3 +15,9 @@
     line-height: 34px;
   }
 }
+
+@media screen and (max-width: 580px) {
+  .saved__quantity {
+    width: 100%;
+  }
+}

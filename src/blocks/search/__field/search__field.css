@@ -10,3 +10,9 @@
     height: 56px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .search__field {
+    margin: 122px 0 16px;
+  }
+}
