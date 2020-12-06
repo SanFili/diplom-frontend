@@ -12,7 +12,6 @@ export default class Popup {
   }
 
   open() {
-    console.log(this.popupElement)
     this.popupElement.classList.add('popup_is-opened');
     document.addEventListener("keydown", this._escKey);
   }

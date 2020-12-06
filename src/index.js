@@ -1,7 +1,11 @@
 import "./pages/index.css";
 import Popup from "./js/components/Popup";
+import Form from "./js/components/Form";
 
 const popup = document.querySelector(".popup");
+
+// валидация
+const validateForm = new Form(document.querySelector('.popup__form'));
 
 
 const setPopup = new Popup(popup);
