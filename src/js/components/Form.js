@@ -34,7 +34,8 @@ export default class Form {
   setEventListeners() {
     const errorMsg = {
       emptyInput: "Это обязательное поле",
-      emailError: "Неверный формат e-mail"
+      emailError: "Неверный формат e-mail",
+      serverError: "Такой пользователь уже зарегестрирован"
     };
     this.popupForm.addEventListener('input', () => {
       const inputs = Array.from(this.popupForm.elements);
@@ -49,5 +50,9 @@ export default class Form {
       console.log(formIsValid)
       this.setSubmitButtonState(formIsValid);
     })
+  }
+
+  setServerError() {
+    document.querySelector('#error-server').textContent = "Такой пользователь уже зарегестрирован"
   }
 };

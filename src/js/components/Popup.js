@@ -48,10 +48,6 @@ export default class Popup {
     this.popupElement.querySelector('.popup__other-btn').textContent = "Зарегистрироваться";
   }
 
-  setEventListeners(openButton) {
-    openButton.addEventListener('click', this.open);
-  }
-
   _escKey(event) {
     if (event.key === "Escape") this.close();
   }
