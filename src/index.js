@@ -6,12 +6,18 @@ import Form from "./js/components/Form";
 const apiKey = 'd905610b9adf4166ae3f388ef3ea907a';
 
 const popup = document.querySelector(".popup");
-//api
-const api = new MainApi();
-// валидация
-const validateForm = new Form(document.querySelector('.popup__form'));
+const popupSuccess = document.querySelector(".popup_success");
+const popupForm = document.querySelector('.popup__form');
+const formBtn = document.querySelector('.popup__button');
+const headerBtn = document.querySelector('.header__button');
+const popupBtn = document.querySelector('.popup__other-btn');
 
 const setPopup = new Popup(popup);
+const successPopup = new Popup(popupSuccess)
+//api
+const apiMain = new MainApi();
+// валидация
+const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
 
 function changePopup(event) {
   if (event.target.textContent === "Войти") {
@@ -24,12 +30,17 @@ function changePopup(event) {
 }
 
 function openPopup(event) {
-  if (event.target.textContent === "Авторизоваться") {
+  if (event.target.textContent === "Авторизоваться" || "Грета") {
     setPopup.setEnterForm();
     setPopup.open();
   }
 }
 
-document.querySelector('.header__button').addEventListener('click', openPopup);
+function getData(event) {
+  event.preventDefault();
+  authForm._getInfo();
+}
 
-document.querySelector('.popup__other-btn').addEventListener('click', changePopup);
+formBtn.addEventListener('click', getData);
+headerBtn.addEventListener('click', openPopup);
+popupBtn.addEventListener('click', changePopup);

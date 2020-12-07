@@ -150,12 +150,12 @@
             <input type="text" name="name" id="name" class="popup__input popup__input_type_name" placeholder="Введите имя" required>
             <p class="error-msg" id="error-name"></p>
             <p class="error-msg error-msg_server" id="error-server"></p>
-            <button type class="popup__button">Зарегистрироваться</button>
+            <button type class="popup__button" disabled>Зарегистрироваться</button>
           </form>
           <p class="popup__other">или<button class="popup__other-btn">Войти</button></p>
         </div>
       </div>
-      <div class="popup"> <!-- для открытия попапа добавить класс popup_is-opened-->
+      <div class="popup popup_success"> <!-- для открытия попапа добавить класс popup_is-opened-->
         <div class="popup__content">
           <img class="popup__close" src="<%=require('./images/close.svg')%>" alt="закрыть попап">
           <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>

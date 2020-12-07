@@ -13,7 +13,7 @@ export default class MainApi {
   });
   }
 
-  signup(name, email, pass) {
+  signup({name, email, pass}) {
     return fetch(`https://${this.url}/signup`, {
       method: "POST",
       credentials: "include",
@@ -23,7 +23,7 @@ export default class MainApi {
       body: JSON.stringify({
         name,
         email,
-        password,
+        pass,
       }),
     })
     .then(res => this.checkAnswer(res));
@@ -38,7 +38,7 @@ export default class MainApi {
       },
       body: JSON.stringify({
         email,
-        password,
+        pass,
       }),
     })
     .then(res => this.checkAnswer(res));

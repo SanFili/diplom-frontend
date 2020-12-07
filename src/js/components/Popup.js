@@ -27,9 +27,8 @@ export default class Popup {
       const regForm = `
       <h4 class="popup__subtitle" id="name">Имя</h4>
       <input type="text" name="name" id="name" class="popup__input popup__input_type_name" placeholder="Введите имя" required>
-      <p class="error-msg" id="error-name"></p>
-      <p class="error-msg error-msg_server" id="error-server"></p>`;
-      this.button.insertAdjacentHTML('beforeBegin', regForm);
+      <p class="error-msg" id="error-name"></p>`;
+      this.form.insertAdjacentHTML('afterbegin', regForm);
     }
     this.popupElement.querySelector('.popup__title').textContent = "Регистрация";
     this.popupElement.querySelector('.popup__button').textContent = "Зарегистрироваться";
@@ -41,7 +40,6 @@ export default class Popup {
     if (this.popupElement.querySelector('#name')) {
       this.popupElement.querySelectorAll('#name').forEach((el) => el.remove());
       this.popupElement.querySelectorAll('#error-name').forEach((el) => el.remove());
-      this.popupElement.querySelectorAll('#error-server').forEach((el) => el.remove());
     }
     this.popupElement.querySelector('.popup__title').textContent = "Вход";
     this.popupElement.querySelector('.popup__button').textContent = "Войти";
