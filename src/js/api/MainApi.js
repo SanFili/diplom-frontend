@@ -26,7 +26,9 @@ export default class MainApi {
         pass,
       }),
     })
-    .then(res => this.checkAnswer(res));
+    .then(res => {
+      return res;
+    });
   }
 
   signin(email, pass) {
@@ -41,7 +43,9 @@ export default class MainApi {
         pass,
       }),
     })
-    .then(res => this.checkAnswer(res));
+    .then(res => {
+      return res;
+    });
   }
 
   getUserData() {

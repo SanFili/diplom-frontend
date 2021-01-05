@@ -19,10 +19,25 @@ export default class Popup {
   close() {
     this.popupElement.classList.remove('popup_is-opened');
     document.removeEventListener("keydown", this._escKey);
+    this.form.reset();
+    const inputs = Array.from(this.form.elements);
+    inputs.forEach((elem) => {
+      if (!elem.classList.contains('popup__button')) {
+        document.querySelector(`#error-${elem.id}`).textContent = " ";
+      }
+    });
+    document.querySelector(`#error-server`).textContent = " ";
   }
 
   setRegForm() {
     this.form.reset();
+    const inputs = Array.from(this.form.elements);
+    inputs.forEach((elem) => {
+      if (!elem.classList.contains('popup__button')) {
+        document.querySelector(`#error-${elem.id}`).textContent = " ";
+      }
+    });
+    document.querySelector(`#error-server`).textContent = " ";
     if (!this.popupElement.querySelector('#name')) {
       const regForm = `
       <h4 class="popup__subtitle" id="name">Имя</h4>
@@ -37,6 +52,13 @@ export default class Popup {
 
   setEnterForm() {
     this.form.reset();
+    const inputs = Array.from(this.form.elements);
+    inputs.forEach((elem) => {
+      if (!elem.classList.contains('popup__button')) {
+        document.querySelector(`#error-${elem.id}`).textContent = " ";
+      }
+    });
+    document.querySelector(`#error-server`).textContent = " ";
     if (this.popupElement.querySelector('#name')) {
       this.popupElement.querySelectorAll('#name').forEach((el) => el.remove());
       this.popupElement.querySelectorAll('#error-name').forEach((el) => el.remove());
