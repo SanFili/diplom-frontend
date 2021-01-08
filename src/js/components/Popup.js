@@ -19,25 +19,11 @@ export default class Popup {
   close() {
     this.popupElement.classList.remove('popup_is-opened');
     document.removeEventListener("keydown", this._escKey);
-    this.form.reset();
-    const inputs = Array.from(this.form.elements);
-    inputs.forEach((elem) => {
-      if (!elem.classList.contains('popup__button')) {
-        document.querySelector(`#error-${elem.id}`).textContent = " ";
-      }
-    });
-    document.querySelector(`#error-server`).textContent = " ";
+    this.clearForm();
   }
 
   setRegForm() {
-    this.form.reset();
-    const inputs = Array.from(this.form.elements);
-    inputs.forEach((elem) => {
-      if (!elem.classList.contains('popup__button')) {
-        document.querySelector(`#error-${elem.id}`).textContent = " ";
-      }
-    });
-    document.querySelector(`#error-server`).textContent = " ";
+    this.clearForm();
     if (!this.popupElement.querySelector('#name')) {
       const regForm = `
       <h4 class="popup__subtitle" id="name">Имя</h4>
@@ -51,14 +37,7 @@ export default class Popup {
   }
 
   setEnterForm() {
-    this.form.reset();
-    const inputs = Array.from(this.form.elements);
-    inputs.forEach((elem) => {
-      if (!elem.classList.contains('popup__button')) {
-        document.querySelector(`#error-${elem.id}`).textContent = " ";
-      }
-    });
-    document.querySelector(`#error-server`).textContent = " ";
+    this.clearForm();
     if (this.popupElement.querySelector('#name')) {
       this.popupElement.querySelectorAll('#name').forEach((el) => el.remove());
       this.popupElement.querySelectorAll('#error-name').forEach((el) => el.remove());
@@ -70,5 +49,16 @@ export default class Popup {
 
   _escKey(event) {
     if (event.key === "Escape") this.close();
+  }
+
+  clearForm() {
+    this.form.reset();
+    const inputs = Array.from(this.form.elements);
+    inputs.forEach((elem) => {
+      if (!elem.classList.contains('popup__button')) {
+        document.querySelector(`#error-${elem.id}`).textContent = " ";
+      }
+    });
+    document.querySelector(`#error-server`).textContent = " ";
   }
 }
