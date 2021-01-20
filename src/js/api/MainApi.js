@@ -14,7 +14,7 @@ export default class MainApi {
   }
 
   signup({name, email, pass}) {
-    return fetch(`https://${this.url}/signup`, {
+    return fetch(`http://localhost:8080/signup`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -26,13 +26,11 @@ export default class MainApi {
         pass,
       }),
     })
-    .then(res => {
-      return res;
-    });
+    .then(res => this.checkAnswer(res));
   }
 
   signin(email, pass) {
-    return fetch(`https://${this.url}/signin`, {
+    return fetch(`http://localhost:8080/signin`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -43,13 +41,11 @@ export default class MainApi {
         pass,
       }),
     })
-    .then(res => {
-      return res;
-    });
+    .then(res => this.checkAnswer(res));
   }
 
   getUserData() {
-    return fetch(`https://${this.url}/users/me`, {
+    return fetch(`http://localhost:8080/users/me`, {
       method: "GET",
       credentials: "include",
     })

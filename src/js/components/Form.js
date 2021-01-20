@@ -1,5 +1,8 @@
-export default class Form {
+import Header from "./Header";
+
+export default class Form extends Header {
   constructor(popupForm, api, setPopup, successPopup) {
+    super();
     this.popupForm = popupForm;
     this.api = api;
     this.setPopup = setPopup;
@@ -69,7 +72,7 @@ export default class Form {
       userData[inputs[i].name] = inputs[i].value;
       i++;
     }
-    //console.log(userData)
+    console.log(userData)
     this.authorization(userData);
   }
 
@@ -81,7 +84,8 @@ export default class Form {
           this.setPopup.close();
           this.successPopup.open();
           serverError.textContent = " ";
-          console.log('success reg')
+          this.getLoggedInHeader();
+          // console.log('success reg')
         } else if (answer.status === 409) {
           this.serverError.textContent = "Такой пользователь уже зарегистрирован";
         } else if (answer.status === 500) {
@@ -98,7 +102,8 @@ export default class Form {
               localStorage.setItem("username", res.data.name);
               this.setPopup.close();
               serverError.textContent = " ";
-              console.log('success auth')
+              this.getLoggedInHeader();
+              // console.log('success auth')
             })
             .catch(err => this.serverError.textContent = err);
         } else if (answer.status === 401) {

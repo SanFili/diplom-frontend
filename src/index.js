@@ -1,5 +1,6 @@
 import "./pages/index.css";
 import MainApi from "./js/api/MainApi";
+import NewsApi from "./js/api/NewsApi";
 import Popup from "./js/components/Popup";
 import Form from "./js/components/Form";
 import Header from "./js/components/Header";
@@ -18,6 +19,7 @@ const setPopup = new Popup(popup);
 const successPopup = new Popup(popupSuccess);
 //api
 const apiMain = new MainApi();
+const news = new NewsApi();
 // валидация
 const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
 
@@ -31,10 +33,12 @@ function changePopup(event) {
   }
 }
 
-function openPopup(event) {
-  if (event.target.textContent === "Авторизоваться" || "Грета") {
+function logInOut(event) {
+  if (event.target.textContent === "Авторизоваться") {
     setPopup.setEnterForm();
     setPopup.open();
+  } else if (event.target.textContent === localStorage.getItem("username")) {
+    getHeader.getLoggedOutHeader();
   }
 }
 
@@ -44,5 +48,5 @@ function getData(event) {
 }
 
 formBtn.addEventListener('click', getData);
-headerBtn.addEventListener('click', openPopup);
+headerBtn.addEventListener('click', logInOut);
 popupBtn.addEventListener('click', changePopup);
