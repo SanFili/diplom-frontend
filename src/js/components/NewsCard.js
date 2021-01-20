@@ -34,13 +34,13 @@ export default class NewsCard {
   _renderIcon() {
     const alertMsg = document.querySelector('.card__alert');
     const cardSave = document.querySelector('.card__save');
-    if (this.page === "savedPage" ) {
+    if (this.page === "newsPage") {
       this.icon.src = trashIcon;
       alertMsg.textContent = "Убрать из сохраненных";
       const theme = `
       <p class="card__theme">${this.cardData.keyword}</p>`
       cardSave.insertAdjacentHTML('beforebegin', theme);
-    } else {
+    } else if (this.page === "indexPage") {
       this.icon.src = notSavedIcon;
       alertMsg.textContent = "Войдите, чтобы сохранять статьи";
     }
@@ -70,5 +70,23 @@ export default class NewsCard {
     const card = template.firstElementChild;
     card.querySelector('.card__data').textContent = this._getDate(cardData.date);
     this._renderIcon();
+
+    card.quertSelector('.card__save-img').addEventListener('click', () => this._saveCard());
+  }
+
+  _saveCard() {
+    if (this.icon.src = notSavedIcon) {
+      this.api.createArticle(this._getCardData())
+        .then((res) => {
+          this.icon.src === savedIcon;
+        })
+        .catch((err) => alert("Ошибка"));
+    } else if (this.icon.src === savedIcon || trash) {
+      this.api.removeArticle(this.cardData._id)
+        .then((res) => {
+          this.icon.src === notSavedIcon;
+        })
+        .catch(err => alert("Ошибка"))
+    }
   }
 }

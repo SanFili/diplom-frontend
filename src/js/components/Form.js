@@ -84,7 +84,7 @@ export default class Form extends Header {
           this.setPopup.close();
           this.successPopup.open();
           serverError.textContent = " ";
-          this.getLoggedInHeader();
+          // this.getLoggedInHeader();
           // console.log('success reg')
         } else if (answer.status === 409) {
           this.serverError.textContent = "Такой пользователь уже зарегистрирован";
@@ -103,6 +103,7 @@ export default class Form extends Header {
               this.setPopup.close();
               serverError.textContent = " ";
               this.getLoggedInHeader();
+              document.querySelector('.card__alert').textContent = " ";
               // console.log('success auth')
             })
             .catch(err => this.serverError.textContent = err);
