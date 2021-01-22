@@ -68,23 +68,24 @@ export default class NewsCard {
     const card = template.firstElementChild;
     card.querySelector('.card__data').textContent = this._getDate(cardData.date);
     this._renderIcon(keyword);
-
-    card.quertSelector('.card__save-img').addEventListener('click', () => this._saveCard(cardData, keyword));
+    card.querySelector('.card__save-img').addEventListener('click', () => this._saveCard(cardData, keyword));
   }
 
   _saveCard(cardData, keyword) {
-    if (this.icon.src = notSavedIcon) {
+    if (this.icon.src === notSavedIcon) {
       this.api.createArticle(this._getCardData(cardData, keyword))
         .then((res) => {
           this.icon.src === savedIcon;
         })
         .catch((err) => alert("Ошибка"));
     } else if (this.icon.src === savedIcon || trash) {
-      this.api.removeArticle(cardData._id)
+      if (window.confirm()){
+        this.api.removeArticle(cardData._id)
         .then((res) => {
           this.icon.src === notSavedIcon;
         })
         .catch(err => alert("Ошибка"))
+      }
     }
   }
 }

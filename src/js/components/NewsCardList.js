@@ -1,15 +1,16 @@
 export default class NewsCardList {
-  constructor(newsApi, mainApi, container) {
+  constructor(newsApi, mainApi, container, cardClass) {
     super();
     this.newsApi = newsApi;
     this.mainApi = mainApi;
     this.container = container;
+    this.cardClass = cardClass;
     this.errorRes = document.querySelector('.results__not-found');
     this.searchInput = document.querySelector('.search__input');
   }
 
   addCard(cardData, keyword) {
-    this.container.appendChild(this.newsListClass.createCard(cardData, keyword));
+    this.container.appendChild(this.cardClass.createCard(cardData, keyword));
   }
 
   clearList() {
@@ -64,5 +65,40 @@ export default class NewsCardList {
         }
       })
       .catch(err => this.renderError());
+  }
+
+  renderSavedPage() {
+    const mySet = new Set();
+    let count = 0;
+    this.mainApi.getArticles()
+      .then((cards) => {
+        for (let card of cards) {
+          this.addCard(card, card.keyword);
+          mySet.add(card.keyword);
+          count += 1;
+        }
+        const themes = Array.from(mySet);
+        this.renderThemes(themes);
+        this.renderCount(count);
+      })
+      .catch(err => console.log(err));
+  }
+
+  renderThemes(themes) {
+    const spanThemes = document.querySelector('#themes');
+    if (themes.length = 1) {
+      spanThemes.textContent = `${themes[0]}`;
+    } else if (themes.length = 2) {
+      spanThemes.textContent = `${themes[0]} и ${themes[1]}`;
+    } else if (themes.length = 3) {
+      spanThemes.textContent = `${themes[0]}, ${themes[1]} и ${themes[2]}`;
+    } else if (themes.length > 3) {
+      spanThemes.textContent = `${themes[0]}, ${themes[1]} и ${themes.length - 2} другим`;
+    }
+  }
+
+  renderCount(count) {
+    const savedTitle = document.querySelector('.saved__quantity');
+    savedTitle.textContent = `${localStorage.getItem("username")}, у вас ${count} сохраненных статей`;
   }
 }
