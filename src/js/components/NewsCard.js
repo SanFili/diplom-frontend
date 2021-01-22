@@ -3,23 +3,21 @@ const savedIcon = require("../../images/save-card-saved.svg");
 const trashIcon = require("../../images/trash.svg");
 
 export default class NewsCard {
-  constructor(api, keyword, cardData, page) {
+  constructor(api, page) {
     this.api = api;
-    this.keyword = keyword;
-    this.cardData = cardData;
     this.page = page;
     this.icon = document.querySelector('.card__save-img');
   }
 
-  _getCardData() {
+  _getCardData(cardData, key) {
     return {
-      keyword: this.keyword,
-      title: this.cardData.title,
-      text: this.cardData.description,
-      date: this.cardData.publishedAt,
-      source: this.cardData.source.name,
-      link: this.cardData.url,
-      image: this.cardData.urlToImage
+      keyword: key,
+      title: cardData.title,
+      text: cardData.description,
+      date: cardData.publishedAt,
+      source: cardData.source.name,
+      link: cardData.url,
+      image: cardData.urlToImage
     };
   }
 
@@ -31,14 +29,14 @@ export default class NewsCard {
     })}, ${date.getFullYear()}`;
   }
 
-  _renderIcon() {
+  _renderIcon(cardData) {
     const alertMsg = document.querySelector('.card__alert');
     const cardSave = document.querySelector('.card__save');
     if (this.page === "newsPage") {
       this.icon.src = trashIcon;
       alertMsg.textContent = "Убрать из сохраненных";
       const theme = `
-      <p class="card__theme">${this.cardData.keyword}</p>`
+      <p class="card__theme">${keyword}</p>`
       cardSave.insertAdjacentHTML('beforebegin', theme);
     } else if (this.page === "indexPage") {
       this.icon.src = notSavedIcon;
@@ -46,43 +44,43 @@ export default class NewsCard {
     }
   }
 
-  createCard () {
+  createCard (cardData, keyword) {
     const template = document.createElement("div");
     template.insertAdjacentHTML('beforeend', `
       <div class="card">
-        <a class="card__link" href="${this.cardData.link}" target="_blank">
+        <a class="card__link" href="${cardData.link}" target="_blank">
           <div class="card__save">
             <p class="card__alert"> </p>
             <button class="card__save-btn">
               <img class="card__save-img" src=" " alt="сохранить/удалить статью">
             </button>
           </div>
-          <img class="card__img" src="${this.cardData.image}" alt="изображение статьи">
+          <img class="card__img" src="${cardData.image}" alt="изображение статьи">
           <div class="card__content">
             <p class="card__data"></p>
-            <h3 class="card__title">${this.cardData.title}</h3>
-            <p class="card__article">${this.cardData.text}</p>
-            <p class="card__resource">${this.cardData.source}</p>
+            <h3 class="card__title">${cardData.title}</h3>
+            <p class="card__article">${cardData.text}</p>
+            <p class="card__resource">${cardData.source}</p>
           </div>
         </a>
       </div>`
     )
     const card = template.firstElementChild;
     card.querySelector('.card__data').textContent = this._getDate(cardData.date);
-    this._renderIcon();
+    this._renderIcon(keyword);
 
-    card.quertSelector('.card__save-img').addEventListener('click', () => this._saveCard());
+    card.quertSelector('.card__save-img').addEventListener('click', () => this._saveCard(cardData, keyword));
   }
 
-  _saveCard() {
+  _saveCard(cardData, keyword) {
     if (this.icon.src = notSavedIcon) {
-      this.api.createArticle(this._getCardData())
+      this.api.createArticle(this._getCardData(cardData, keyword))
         .then((res) => {
           this.icon.src === savedIcon;
         })
         .catch((err) => alert("Ошибка"));
     } else if (this.icon.src === savedIcon || trash) {
-      this.api.removeArticle(this.cardData._id)
+      this.api.removeArticle(cardData._id)
         .then((res) => {
           this.icon.src === notSavedIcon;
         })
