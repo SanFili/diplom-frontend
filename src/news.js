@@ -2,7 +2,7 @@ import "./pages/news.css";
 import MainApi from "./js/api/MainApi";
 import NewsApi from "./js/api/NewsApi";
 import NewsCard from "./js/components/NewsCard";
-import NewsCardList from "./js/components/NewsCardList";
+import SavedCards from "./js/components/SavedCards";
 
 const headerBtn = document.querySelector('.header__button');
 
@@ -11,9 +11,9 @@ const apiMain = new MainApi();
 const news = new NewsApi();
 //классы
 const cardClass = new NewsCard();
-const newsList = new NewsCardList(news, apiMain, cardsContainer, cardClass);
+const savedList = new SavedCards(apiMain, cardClass);
 
-newsList.renderSavedPage();
+savedList.renderSavedCards();
 
 headerBtn.textContent = localStorage.getItem("username");
 

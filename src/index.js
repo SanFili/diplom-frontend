@@ -7,8 +7,6 @@ import Header from "./js/components/Header";
 import NewsCard from "./js/components/NewsCard";
 import NewsCardList from "./js/components/NewsCardList";
 
-const apiKey = 'd905610b9adf4166ae3f388ef3ea907a';
-
 const popup = document.querySelector(".popup");
 const popupSuccess = document.querySelector(".popup_success");
 const popupForm = document.querySelector('.popup__form');
@@ -16,18 +14,17 @@ const formBtn = document.querySelector('.popup__button');
 const headerBtn = document.querySelector('.header__button');
 const popupBtn = document.querySelector('.popup__other-btn');
 const searchBtn = document.querySelector('.search__btn');
-const cardsContainer = document.querySelector('.results__content');
 const showMoreBtn = document.querySelector('.results__show-more');
+
+//api
+const apiMain = new MainApi();
+const apiNews = new NewsApi();
 
 const getHeader = new Header();
 const setPopup = new Popup(popup);
 const successPopup = new Popup(popupSuccess);
 const cardClass = new NewsCard();
-const newsList = new NewsCardList(news, apiMain, cardsContainer, cardClass);
-//api
-const apiMain = new MainApi();
-const news = new NewsApi();
-// валидация
+const newsList = new NewsCardList(apiNews, cardClass);
 const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
 
 function changePopup(event) {
