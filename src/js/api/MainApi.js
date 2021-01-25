@@ -1,6 +1,6 @@
 export default class MainApi {
   constructor() {
-    this.url = "api.news.students.nomoreparties.co/";
+    this.url = "api.news.diplom.students.nomoreparties.space";
   }
 
   checkAnswer(res) {
@@ -14,7 +14,7 @@ export default class MainApi {
   }
 
   signup({name, email, pass}) {
-    return fetch(`http://localhost:8080/signup`, {
+    return fetch(`http://${this.url}/signup`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -23,14 +23,14 @@ export default class MainApi {
       body: JSON.stringify({
         name,
         email,
-        pass,
+        password,
       }),
     })
     .then(res => this.checkAnswer(res));
   }
 
   signin(email, pass) {
-    return fetch(`http://localhost:8080/signin`, {
+    return fetch(`http://${this.url}/signin`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -45,7 +45,7 @@ export default class MainApi {
   }
 
   getUserData() {
-    return fetch(`http://localhost:8080/users/me`, {
+    return fetch(`http://${this.url}/users/me`, {
       method: "GET",
       credentials: "include",
     })
@@ -80,7 +80,7 @@ export default class MainApi {
     .then(res => this.checkAnswer(res));
   }
 
-  removeArticle(articleId) {
+  deleteArticle(articleId) {
     return fetch(`https://${this.url}/articles/${atricleId}`, {
       method: "DELETE",
       credentials: "include",

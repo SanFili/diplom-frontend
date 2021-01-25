@@ -7,9 +7,15 @@ export default class NewsCardList {
     this.errorRes = document.querySelector('.results__not-found');
     this.showMoreBtn = document.querySelector('.results__show-more');
     this.searchInput = document.querySelector('.search__input');
+    this.preloader = document.querySelector('.results__loading');
+    this.errText = document.querySelector('.results__not-found-text');
     this.clearList = this.clearList.bind(this);
-    this.renderLoader = this.renderLoader.bind(this);
-    console.log(this.container);
+    this.showMore = this.showMore.bind(this);
+    this.today = new Date();
+    this.weekBefore = new Date();
+    this.weekBefore.setDate(this.today.getDate() - 7);
+    this.day = this.formatDate(this.today);
+    this.week = this.formatDate(this.weekBefore);
   }
 
   addCard(cardData, keyword) {
@@ -24,53 +30,55 @@ export default class NewsCardList {
   }
 
   renderResults() {
-    //this.clearList();
-    //this.renderLoader();
-    console.log(this.container)
-    if (this.errorRes.style.display = "block") {
-      this.errorRes.style.display = "none";
-    }
     this.resSection.style.display = "block";
-    document.querySelector('.results__content').style.display = "block";
-    this.api.getNews(this.searchInput.value, formatDate(today), formatDate(weekBefore))
+    this.clearList();
+    this.preloader.style.display = "block";
+    if (this.errorRes.style.display = "flex") {
+     this.errorRes.style.display = "none";
+    }
+    this.api.getNews(this.searchInput.value, this.day, this.week)
       .then((cards) => {
-        for (let i = 0; i < 3; i++) {
-          this.addCard(cards[i], this.searchInput.value);
-        }
-        if (cards.length > 3) {
-          this.showMoreBtn.style.display = "block";
+        this.preloader.style.display = "none";
+        if (cards.totalResults === 0) {
+          this.errorRes.style.display = "flex";
+        } else {
+          for (let i = 0; i < 3; i++) {
+            this.addCard(cards.articles[i], this.searchInput.value);
+          }
+          document.querySelector('.results__content').style.display = "block";
+          if (cards.totalResults > 3) {
+            this.showMoreBtn.style.display = "block";
+          }
         }
       })
-      .catch(err => this.renderError());
-  }
-
-  renderLoader() {
-    const preloader = document.querySelector('.results__loading');
-    preloader.style.display = "block";
-    this.resSection.style.display = "block";
-    setTimeout(function() {
-      preloader.style.display = "none";
-    }, 3000)
-  }
-
-  renderError() {
-    this.renderLoader();
-    this.errorRes.style.display = "block";
-    this.resSection.style.display = "block";
+      .catch((err) => {
+        console.log(err)
+        this.preloader.style.display = "none";
+        this.errorRes.style.display = "flex";
+        this.errText.textContent = "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+      })
   }
 
   showMore() {
     let j = this.container.children.length;
     const count = j + 3;
-    this.api.getNews(this.searchInput.value, formatDate(today), formatDate(weekBefore))
+    this.api.getNews(this.searchInput.value, this.day, this.week)
       .then((cards) => {
         for (j; j < count; j++) {
-          this.addCard(cards[j], this.searchInput.value);
+          this.addCard(cards.articles[j], this.searchInput.value);
         }
         if (cards.length > count) {
           this.showMoreBtn.style.display = "block";
         }
       })
-      .catch(err => this.renderError());
+      .catch(err => console.log(err))
+  }
+
+  formatDate(date) {
+    return `${date.getFullYear()}-${this.leftPad(date.getMonth() + 1)}-${this.leftPad(date.getDate())}`;
+  }
+
+  leftPad(num) {
+    return num >= 9 ? num : `0${num}`;
   }
 }

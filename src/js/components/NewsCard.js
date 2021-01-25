@@ -6,7 +6,6 @@ export default class NewsCard {
   constructor(api, page) {
     this.api = api;
     this.page = page;
-    this.icon = document.querySelector('.card__save-img');
   }
 
   _getCardData(cardData, key) {
@@ -29,18 +28,31 @@ export default class NewsCard {
     })}, ${date.getFullYear()}`;
   }
 
-  _renderIcon(cardData) {
-    const alertMsg = document.querySelector('.card__alert');
-    const cardSave = document.querySelector('.card__save');
+  _renderTheme(keyword) {
     if (this.page === "newsPage") {
-      this.icon.src = trashIcon;
-      alertMsg.textContent = "Убрать из сохраненных";
       const theme = `
-      <p class="card__theme">${keyword}</p>`
-      cardSave.insertAdjacentHTML('beforebegin', theme);
+       <p class="card__theme">${keyword}</p>`
+       cardSave.insertAdjacentHTML('beforebegin', theme);
+    }
+  }
+
+  _renderAlertMsg() {
+    const alertMsg = {
+      remove: "Убрать из сохраненных",
+      enter: "Войдите, чтобы сохранять статьи"
+    }
+    if (this.page === "newsPage") {
+      return alertMsg.remove
     } else if (this.page === "indexPage") {
-      this.icon.src = notSavedIcon;
-      alertMsg.textContent = "Войдите, чтобы сохранять статьи";
+      return alertMsg.enter
+    }
+  }
+
+  _renderIcon() {
+    if (this.page === "newsPage") {
+      return trashIcon
+    } else if (this.page === "indexPage") {
+      return notSavedIcon
     }
   }
 
@@ -48,44 +60,55 @@ export default class NewsCard {
     const template = document.createElement("div");
     template.insertAdjacentHTML('beforeend', `
       <div class="card">
-        <a class="card__link" href="${cardData.link}" target="_blank">
+        <a class="card__link" href="${cardData.url}" target="_blank">
           <div class="card__save">
-            <p class="card__alert"> </p>
+            <p class="card__alert">${this._renderAlertMsg()}</p>
             <button class="card__save-btn">
-              <img class="card__save-img" src=" " alt="сохранить/удалить статью">
+              <img class="card__save-img" src="${this._renderIcon()}" alt="сохранить/удалить статью">
             </button>
           </div>
-          <img class="card__img" src="${cardData.image}" alt="изображение статьи">
+          <img class="card__img" src="${cardData.urlToImage}" alt="изображение статьи">
           <div class="card__content">
             <p class="card__data"></p>
             <h3 class="card__title">${cardData.title}</h3>
-            <p class="card__article">${cardData.text}</p>
-            <p class="card__resource">${cardData.source}</p>
+            <p class="card__article">${cardData.description}</p>
+            <p class="card__resource">${cardData.source.name}</p>
           </div>
         </a>
       </div>`
-    )
+    );
     const card = template.firstElementChild;
     card.querySelector('.card__data').textContent = this._getDate(cardData.date);
-    this._renderIcon(keyword);
-    card.querySelector('.card__save-img').addEventListener('click', () => this._saveCard(cardData, keyword));
+    this._renderTheme(keyword);
+    card.querySelector('.card__save-img').addEventListener('click', (event) => {
+      event.preventDefault();
+      if (event.target.classList.contains('.card__save-img')) {
+        this._saveCard(cardData, keyword)
+      }
+    });
+
+    return card
   }
 
   _saveCard(cardData, keyword) {
-    if (this.icon.src === notSavedIcon) {
+    const icon = event.target;
+    const iconUrl = icon.src.slice(22);
+    if (iconUrl === notSavedIcon) {
       this.api.createArticle(this._getCardData(cardData, keyword))
         .then((res) => {
-          this.icon.src === savedIcon;
+          if (res.data) {
+            icon.src = `http://localhost:8080/${savedIcon}`;
+          } else {
+            alert("Войдите, чтобы сохранить статью");
+          }
         })
-        .catch((err) => alert("Ошибка"));
-    } else if (this.icon.src === savedIcon || trash) {
-      if (window.confirm()){
-        this.api.removeArticle(cardData._id)
+        .catch((err) => console.log(err));
+    } else if (iconUrl === notSavedIcon || trashIcon) {
+        this.api.deleteArticle(cardData._id)
         .then((res) => {
-          this.icon.src === notSavedIcon;
+          icon.src = `http://localhost:8080/${notSavedIcon}`;
         })
-        .catch(err => alert("Ошибка"))
-      }
+        .catch(err => console.log(err))
     }
   }
 }

@@ -23,9 +23,10 @@ const apiNews = new NewsApi();
 const getHeader = new Header();
 const setPopup = new Popup(popup);
 const successPopup = new Popup(popupSuccess);
-const cardClass = new NewsCard();
-const newsList = new NewsCardList(apiNews, cardClass);
+const cardClass = new NewsCard(apiMain, "indexPage");
 const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
+const newsList = new NewsCardList(apiNews, cardClass);
+const results = newsList.renderResults.bind(newsList);
 
 function changePopup(event) {
   if (event.target.textContent === "Войти") {
@@ -48,11 +49,16 @@ function logInOut(event) {
 
 function getData(event) {
   event.preventDefault();
-  authForm._getInfo();
+  authForm.getInfo();
+}
+
+function renderRes(event) {
+  event.preventDefault();
+  results();
 }
 
 formBtn.addEventListener('click', getData);
 headerBtn.addEventListener('click', logInOut);
 popupBtn.addEventListener('click', changePopup);
-searchBtn.addEventListener('click', newsList.renderResults);
+searchBtn.addEventListener('click', renderRes);
 showMoreBtn.addEventListener('click', newsList.showMore);

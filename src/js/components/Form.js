@@ -9,7 +9,7 @@ export default class Form extends Header {
     this.successPopup = successPopup;
     this.serverError = this.popupForm.querySelector(".error-msg_server");
     this.btn = this.popupForm.querySelector(".popup__button");
-    this._getInfo = this._getInfo.bind(this);
+    this.getInfo = this.getInfo.bind(this);
     this.setEventListeners();
   }
 
@@ -64,7 +64,7 @@ export default class Form extends Header {
     })
   }
 
-  _getInfo() {
+  getInfo() {
     const inputs = this.popupForm.querySelectorAll(".popup__input");
     const userData = {};
     let i = 0;
@@ -72,7 +72,6 @@ export default class Form extends Header {
       userData[inputs[i].name] = inputs[i].value;
       i++;
     }
-    console.log(userData)
     this.authorization(userData);
   }
 
