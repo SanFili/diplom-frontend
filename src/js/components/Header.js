@@ -6,7 +6,6 @@ export default class Header {
 
   getLoggedInHeader() {
     const headerLinks = document.querySelector('.header__links');
-    console.log("logged in")
     const savedArticlesLink = `
     <a class="header__link" id="saved-articles" href="./news.html">Сохраненные статьи</a>`
     headerLinks.insertAdjacentHTML('beforeend', savedArticlesLink);

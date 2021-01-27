@@ -5,6 +5,9 @@ import NewsCard from "./js/components/NewsCard";
 import SavedCards from "./js/components/SavedCards";
 
 const headerBtn = document.querySelector('.header__button');
+console.log(localStorage.getItem("username"))
+
+headerBtn.textContent = localStorage.getItem("username");
 
 //api
 const apiMain = new MainApi();
@@ -14,8 +17,6 @@ const cardClass = new NewsCard();
 const savedList = new SavedCards(apiMain, cardClass);
 
 savedList.renderSavedCards();
-
-headerBtn.textContent = localStorage.getItem("username");
 
 function clearStorage() {
   localStorage.clear();

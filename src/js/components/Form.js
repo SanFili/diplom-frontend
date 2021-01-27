@@ -39,7 +39,7 @@ export default class Form extends Header {
       popupButton.classList.add('popup__button_active');
     } else {
       if (!this.btn.hasAttribute("disabled")) {
-        this.btn.setAttribute("disabled")
+        this.btn.setAttribute("disabled", true);
       };
       popupButton.classList.remove('popup__button_active');
     }
@@ -79,40 +79,39 @@ export default class Form extends Header {
     if (userData.name) {
       this.api.signup(userData)
       .then((res) => {
-        if (res.status === 200) {
-          this.setPopup.close();
-          this.successPopup.open();
-          serverError.textContent = " ";
-          // this.getLoggedInHeader();
-          // console.log('success reg')
-        } else if (answer.status === 409) {
-          this.serverError.textContent = "Такой пользователь уже зарегистрирован";
-        } else if (answer.status === 500) {
-          this.serverError.textContent = "Ошибка на сервере";
-        }
+        this.setPopup.close();
+        this.successPopup.open();
+        serverError.textContent = " ";
       })
-      .catch(err => this.serverError.textContent = err);
+      .catch((err) =>{
+        if (err == 'Error: 409') {
+          this.serverError.textContent = "Такой пользователь уже зарегистрирован";
+        } else if (err == 'Error: 500') {
+          this.serverError.textContent = "Ошибка на сервере";
+        } else {this.serverError.textContent = err}
+      })
     } else if (!userData.name) {
       this.api.signin(userData)
       .then((res) => {
-        if (res.status === 200) {
-          this.api.getUserData()
-            .then((res) => {
-              localStorage.setItem("username", res.data.name);
-              this.setPopup.close();
-              serverError.textContent = " ";
-              this.getLoggedInHeader();
+        this.api.getUserData()
+          .then((res) => {
+            localStorage.setItem("username", res.data.name);
+            this.setPopup.close();
+            this.serverError.textContent = " ";
+            this.getLoggedInHeader();
+            if (document.querySelector('.card__alert')) {
               document.querySelector('.card__alert').textContent = " ";
-              // console.log('success auth')
-            })
-            .catch(err => this.serverError.textContent = err);
-        } else if (answer.status === 401) {
-          this.serverError.textContent = "Введен неверный email или пароль";
-        } else if (answer.status === 500) {
-          this.serverError.textContent = "Ошибка на сервере";
-        }
+            }
+          })
+          .catch(err => this.serverError.textContent = "Произошла ошибка");
       })
-      .catch(err => this.serverError.textContent = err);
+      .catch((err) => {
+        if (err == 'Error: 401') {
+          this.serverError.textContent = "Введен неверный email или пароль";
+        } else if (err == 'Error: 500') {
+          this.serverError.textContent = "Ошибка на сервере";
+        } else {this.serverError.textContent = err}
+      })
     }
   }
 };

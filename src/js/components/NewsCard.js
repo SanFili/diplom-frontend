@@ -6,6 +6,7 @@ export default class NewsCard {
   constructor(api, page) {
     this.api = api;
     this.page = page;
+    this.cardSave = document.querySelector('.card__save');
   }
 
   _getCardData(cardData, key) {
@@ -31,20 +32,22 @@ export default class NewsCard {
   _renderTheme(keyword) {
     if (this.page === "newsPage") {
       const theme = `
-       <p class="card__theme">${keyword}</p>`
-       cardSave.insertAdjacentHTML('beforebegin', theme);
+      <p class="card__theme">${keyword}</p>`
+      this.cardSave.insertAdjacentHTML('beforebegin', theme);
     }
   }
 
   _renderAlertMsg() {
-    const alertMsg = {
-      remove: "Убрать из сохраненных",
-      enter: "Войдите, чтобы сохранять статьи"
-    }
     if (this.page === "newsPage") {
-      return alertMsg.remove
+      const alertBlock = `
+      <p class="card__alert">Убрать из сохраненных</p>`
+      this.cardSave.insertAdjacentHTML('beforebegin', alertBlock);
     } else if (this.page === "indexPage") {
-      return alertMsg.enter
+      if (!localStorage.getItem("username")) {
+        const alertBlock = `
+        <p class="card__alert">Войдите, чтобы сохранять статьи</p>`
+        this.cardSave.insertAdjacentHTML('beforebegin', alertBlock);
+      }
     }
   }
 
@@ -62,7 +65,6 @@ export default class NewsCard {
       <div class="card">
         <a class="card__link" href="${cardData.url}" target="_blank">
           <div class="card__save">
-            <p class="card__alert">${this._renderAlertMsg()}</p>
             <button class="card__save-btn">
               <img class="card__save-img" src="${this._renderIcon()}" alt="сохранить/удалить статью">
             </button>
@@ -78,6 +80,7 @@ export default class NewsCard {
       </div>`
     );
     const card = template.firstElementChild;
+    this._renderAlertMsg();
     card.querySelector('.card__data').textContent = this._getDate(cardData.date);
     this._renderTheme(keyword);
     card.querySelector('.card__save-img').addEventListener('click', (event) => {

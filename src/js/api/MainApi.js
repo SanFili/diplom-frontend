@@ -1,6 +1,6 @@
 export default class MainApi {
   constructor() {
-    this.url = "api.news.diplom.students.nomoreparties.space";
+    this.url = "api.diplom.san.students.nomoreparties.space";
   }
 
   checkAnswer(res) {
@@ -9,11 +9,11 @@ export default class MainApi {
     }
     return Promise.reject(res)
   .catch((err) => {
-    return Promise.reject(new Error(`Ошибка: ${err.message}`))
+    return Promise.reject(new Error(err.status))
   });
   }
 
-  signup({name, email, pass}) {
+  signup({name, email, password}) {
     return fetch(`http://${this.url}/signup`, {
       method: "POST",
       credentials: "include",
@@ -29,7 +29,7 @@ export default class MainApi {
     .then(res => this.checkAnswer(res));
   }
 
-  signin(email, pass) {
+  signin({email, password}) {
     return fetch(`http://${this.url}/signin`, {
       method: "POST",
       credentials: "include",
@@ -38,7 +38,7 @@ export default class MainApi {
       },
       body: JSON.stringify({
         email,
-        pass,
+        password,
       }),
     })
     .then(res => this.checkAnswer(res));
