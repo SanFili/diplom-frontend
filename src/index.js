@@ -28,9 +28,13 @@ const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
 const newsList = new NewsCardList(apiNews, cardClass, "indexPage");
 const results = newsList.renderResults.bind(newsList);
 
-if (localStorage.getItem("username")) {
-  getHeader.getLoggedInHeader();
-}
+apiMain.getUserData()
+  .then((res) => {
+    if (localStorage.getItem("username")) {
+      getHeader.getLoggedInHeader()
+    }
+  })
+  .catch(err => console.log(err))
 
 function changePopup(event) {
   if (event.target.textContent === "Войти") {
