@@ -14,13 +14,19 @@ export default class SavedArticles{
     let count = 0;
     this.api.getArticles()
       .then((cards) => {
-        for (let card of cards.data) {
-          this.addCard(card, card.keyword);
-          mySet.add(card.keyword);
-          count += 1;
+        console.log(cards)
+        if (cards.data.length === 0) {
+          document.querySelector('.saved__theme').remove();
+          document.querySelector('.saved__cards').remove();
+        } else {
+          for (let card of cards.data) {
+            this.addCard(card, card.keyword);
+            mySet.add(card.keyword);
+            count += 1;
+          }
+          const themes = Array.from(mySet);
+          this.renderThemes(themes);
         }
-        const themes = Array.from(mySet);
-        this.renderThemes(themes);
         this.renderCount(count);
       })
       .catch(err => console.log(err));
