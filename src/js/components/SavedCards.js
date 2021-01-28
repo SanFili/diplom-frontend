@@ -14,7 +14,7 @@ export default class SavedArticles{
     let count = 0;
     this.api.getArticles()
       .then((cards) => {
-        for (let card of cards) {
+        for (let card of cards.data) {
           this.addCard(card, card.keyword);
           mySet.add(card.keyword);
           count += 1;
@@ -28,11 +28,11 @@ export default class SavedArticles{
 
   renderThemes(themes) {
     const spanThemes = document.querySelector('#themes');
-    if (themes.length = 1) {
-      spanThemes.textContent = `${themes[0]}`;
-    } else if (themes.length = 2) {
+    if (themes.length === 1) {
+      spanThemes.textContent = themes[0];
+    } else if (themes.length === 2) {
       spanThemes.textContent = `${themes[0]} и ${themes[1]}`;
-    } else if (themes.length = 3) {
+    } else if (themes.length === 3) {
       spanThemes.textContent = `${themes[0]}, ${themes[1]} и ${themes[2]}`;
     } else if (themes.length > 3) {
       spanThemes.textContent = `${themes[0]}, ${themes[1]} и ${themes.length - 2} другим`;

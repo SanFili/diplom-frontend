@@ -1,7 +1,8 @@
 export default class NewsCardList {
-  constructor(api, cardClass) {
+  constructor(api, cardClass, page) {
     this.api = api;
     this.cardClass = cardClass;
+    this.page = page;
     this.container = document.querySelector('.cards');
     this.resSection = document.querySelector('.results');
     this.errorRes = document.querySelector('.results__not-found');

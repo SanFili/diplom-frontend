@@ -13,11 +13,12 @@ export default class NewsCard {
     return {
       keyword: key,
       title: cardData.title,
-      text: cardData.description,
-      date: cardData.publishedAt,
-      source: cardData.source.name,
-      link: cardData.url,
-      image: cardData.urlToImage
+      text: cardData.description ? cardData.description : cardData.text,
+      date: cardData.publishedAt ? cardData.publishedAt : cardData.date,
+      source: cardData.source.name ? cardData.source.name : cardData.source,
+      link: cardData.url ? cardData.url : cardData.link,
+      image: cardData.urlToImage ? cardData.urlToImage : cardData.image,
+      id: cardData._id ? cardData._id : null
     };
   }
 
@@ -31,23 +32,24 @@ export default class NewsCard {
 
   _renderTheme(keyword) {
     if (this.page === "newsPage") {
-      const theme = `
-      <p class="card__theme">${keyword}</p>`
-      this.cardSave.insertAdjacentHTML('beforebegin', theme);
+      return keyword
+    } else if (this.page === "indexPage") {
+      return "display: none"
     }
   }
 
   _renderAlertMsg() {
+    const alertMsg = {
+      delete: "Убрать из сохраненных",
+      enter: "Войдите, чтобы сохранять статьи",
+      empty: " "
+    }
     if (this.page === "newsPage") {
-      const alertBlock = `
-      <p class="card__alert">Убрать из сохраненных</p>`
-      this.cardSave.insertAdjacentHTML('beforebegin', alertBlock);
+      return alertMsg.delete
     } else if (this.page === "indexPage") {
       if (!localStorage.getItem("username")) {
-        const alertBlock = `
-        <p class="card__alert">Войдите, чтобы сохранять статьи</p>`
-        this.cardSave.insertAdjacentHTML('beforebegin', alertBlock);
-      }
+        return alertMsg.enter
+      } else {return "display: none"}
     }
   }
 
@@ -60,34 +62,35 @@ export default class NewsCard {
   }
 
   createCard (cardData, keyword) {
+    const articleData = this._getCardData(cardData, keyword);
     const template = document.createElement("div");
     template.insertAdjacentHTML('beforeend', `
       <div class="card">
-        <a class="card__link" href="${cardData.url}" target="_blank">
+        <a class="card__link" href="${articleData.link}" target="_blank">
+          <p class="card__theme" style="${this._renderTheme(keyword)}">${this._renderTheme(keyword)}</p>
           <div class="card__save">
+            <p class="card__alert" style="${this._renderAlertMsg()}">${this._renderAlertMsg()}</p>
             <button class="card__save-btn">
               <img class="card__save-img" src="${this._renderIcon()}" alt="сохранить/удалить статью">
             </button>
           </div>
-          <img class="card__img" src="${cardData.urlToImage}" alt="изображение статьи">
+          <img class="card__img" src="${articleData.image}" alt="изображение статьи">
           <div class="card__content">
             <p class="card__data"></p>
-            <h3 class="card__title">${cardData.title}</h3>
-            <p class="card__article">${cardData.description}</p>
-            <p class="card__resource">${cardData.source.name}</p>
+            <h3 class="card__title">${articleData.title}</h3>
+            <p class="card__article">${articleData.text}</p>
+            <p class="card__resource">${articleData.source}</p>
           </div>
         </a>
       </div>`
     );
     const card = template.firstElementChild;
     this._renderAlertMsg();
-    card.querySelector('.card__data').textContent = this._getDate(cardData.date);
+    card.querySelector('.card__data').textContent = this._getDate(articleData.date);
     this._renderTheme(keyword);
     card.querySelector('.card__save-img').addEventListener('click', (event) => {
       event.preventDefault();
-      if (event.target.classList.contains('.card__save-img')) {
-        this._saveCard(cardData, keyword)
-      }
+      this._saveCard(cardData, keyword)
     });
 
     return card
@@ -96,8 +99,10 @@ export default class NewsCard {
   _saveCard(cardData, keyword) {
     const icon = event.target;
     const iconUrl = icon.src.slice(22);
+    const articleData = this._getCardData(cardData, keyword);
     if (iconUrl === notSavedIcon) {
-      this.api.createArticle(this._getCardData(cardData, keyword))
+      if (localStorage.getItem("username")) {
+        this.api.createArticle(articleData)
         .then((res) => {
           if (res.data) {
             icon.src = `http://localhost:8080/${savedIcon}`;
@@ -106,8 +111,9 @@ export default class NewsCard {
           }
         })
         .catch((err) => console.log(err));
+      } else {alert("Войдите, чтобы сохранить статью");}
     } else if (iconUrl === notSavedIcon || trashIcon) {
-        this.api.deleteArticle(cardData._id)
+        this.api.deleteArticle(articleData.id)
         .then((res) => {
           icon.src = `http://localhost:8080/${notSavedIcon}`;
         })

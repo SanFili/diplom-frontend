@@ -25,8 +25,12 @@ const setPopup = new Popup(popup);
 const successPopup = new Popup(popupSuccess);
 const cardClass = new NewsCard(apiMain, "indexPage");
 const authForm = new Form(popupForm, apiMain, setPopup, successPopup);
-const newsList = new NewsCardList(apiNews, cardClass);
+const newsList = new NewsCardList(apiNews, cardClass, "indexPage");
 const results = newsList.renderResults.bind(newsList);
+
+if (localStorage.getItem("username")) {
+  getHeader.getLoggedInHeader();
+}
 
 function changePopup(event) {
   if (event.target.textContent === "Войти") {
@@ -44,6 +48,7 @@ function logInOut(event) {
     setPopup.open();
   } else if (event.target.textContent === localStorage.getItem("username")) {
     getHeader.getLoggedOutHeader();
+    localStorage.clear();
   }
 }
 

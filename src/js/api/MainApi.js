@@ -74,14 +74,14 @@ export default class MainApi {
         date: articleData.date,
         source: articleData.source,
         link: articleData.link,
-        image: articleData.image,
+        image: articleData.image
       }),
     })
     .then(res => this.checkAnswer(res));
   }
 
   deleteArticle(articleId) {
-    return fetch(`https://${this.url}/articles/${atricleId}`, {
+    return fetch(`https://${this.url}/articles/${articleId}`, {
       method: "DELETE",
       credentials: "include",
     })
