@@ -4,3 +4,6 @@
 @import url("./__theme/saved__theme.css");
 @import url("./__cards/saved__cards.css");
 
+.saved {
+  min-height: calc(100vh - 200px);
+}

@@ -15,8 +15,10 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: filename("js")
+        filename: filename("js"),
+        sourceMapFilename: "[name].js.map"
     },
+    devtool: "source-map",
     module: {
         rules: [{
             test: /\.js$/,
@@ -96,5 +98,9 @@ module.exports = {
         new webpack.DefinePlugin({
             'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         })
-    ]
+    ],
+    devServer: {
+      open: true,
+      openPage: '', // <== Add this
+    },
 }

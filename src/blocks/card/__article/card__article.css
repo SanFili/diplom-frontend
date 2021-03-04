@@ -8,12 +8,6 @@
   margin: 16px 0 10px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
   overflow: hidden;
-}
-
-
-@media screen and (max-width: 1250px) {
-  .card__article {
-    -webkit-line-clamp: 4;
-  }
 }

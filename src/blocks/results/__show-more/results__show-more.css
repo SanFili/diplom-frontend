@@ -15,6 +15,7 @@
   position: relative;
   left: 50%;
   transform: translate(-50%, 0);
+  display: none;
 }
 
 .results__show-more:hover {
