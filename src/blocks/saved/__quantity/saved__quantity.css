@@ -1,0 +1,23 @@
+.saved__quantity {
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1A1B22;
+  width: 500px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .saved__quantity {
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .saved__quantity {
+    width: 100%;
+  }
+}

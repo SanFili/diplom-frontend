@@ -1,0 +1,15 @@
+.saved__description {
+  margin: 0 104px;
+}
+
+@media screen and (max-width: 768px) {
+  .saved__description {
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .saved__description {
+    margin: 0 16px;
+  }
+}

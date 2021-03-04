@@ -1,0 +1,18 @@
+.card__alert {
+  height: 40px;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  margin: 0 5px 0 0;
+  padding: 0 12px;
+  opacity: 0;
+}

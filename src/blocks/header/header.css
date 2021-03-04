@@ -1,0 +1,39 @@
+@import url("./_black-border/header_black-border.css");
+@import url("./__burger/header__burger.css");
+@import url("./__content/header__content.css");
+@import url("./__title/header__title.css");
+@import url("./__menu/header__menu.css");
+@import url("./__links/header__links.css");
+@import url("./__link/header__link.css");
+@import url("./__link/_active/header__link_active.css");
+@import url("./__link/_active-black/header__link_active_black.css");
+@import url("./__button/header__button.css");
+@import url("./__btn-text/header__btn-text.css");
+@import url("./__btn-logout/header__btn-logout.css");
+@import url("./__burger-btn/header__burger-btn.css");
+
+.header {
+  position: absolute;
+  /* position: fixed;  при открытии бурер-меню */
+  top: 0;
+  z-index: 10;
+  height: 80px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  border-bottom: solid rgba(255, 255, 255, 0.2) 1px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 66px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .header {
+    height: 56px;
+    position: fixed;
+  }
+}

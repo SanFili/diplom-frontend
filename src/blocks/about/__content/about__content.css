@@ -1,0 +1,28 @@
+.about__content {
+  width: 1120px;
+  padding: 80px 0 80px 104px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1250px) {
+  .about__content {
+    padding-left: 80px;
+    width: calc(100% - 90px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__content {
+    padding: 40px;
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .about__content {
+    flex-direction: column;
+    width: calc(100% - 32px);
+    padding: 32px 16px 80px;
+  }
+}

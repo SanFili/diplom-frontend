@@ -1,0 +1,10 @@
+@import url("./__content/about__content.css");
+@import url("./__avatar/about__avatar.css");
+@import url("./__description/about__description.css");
+@import url("./__title/about__title.css");
+@import url("./__text/about__text.css");
+
+.about {
+  width: 100%;
+  max-width: 1440px;
+}

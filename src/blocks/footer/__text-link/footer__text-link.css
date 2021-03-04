@@ -1,0 +1,14 @@
+.footer__text-link {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1A1B22;
+}
+
+@media screen and (max-width: 580px) {
+  .footer__text-link {
+    margin-bottom: 30px;
+  }
+}

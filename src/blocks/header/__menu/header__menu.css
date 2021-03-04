@@ -1,0 +1,20 @@
+.header__menu {
+  display: flex;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@media screen and (max-width: 580px) {
+  .header__menu {
+    margin: 0;
+    padding: 72px 0 24px;
+    flex-direction: column;
+    width: 100%;
+    background: #1A1B22;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+}

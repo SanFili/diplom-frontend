@@ -1,0 +1,24 @@
+.header__link {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #B6BCBF;
+  margin: 0 32px 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header__link {
+    font-size: 16px;
+    margin-right: 16px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .header__link {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+}
+
