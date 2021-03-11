@@ -1,7 +1,9 @@
 # NewsExplorer
-Сайт для поиска новостей по ключевому слову или теме.
+Поиск новостей по ключевому слову или теме.
 
-[GitHup Pages](https://SanFili.github.io/diplom-frontend/src/)
+## [Посмотреть сайт](http://localhost:8080/)
+____
+
 ### Команды 
 - npm install - установка зависимостей
 - npm run dev - запуск на локальном сервере в режиме development
